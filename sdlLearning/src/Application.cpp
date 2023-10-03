@@ -29,9 +29,12 @@ Application::~Application()
 // The main Loop
 void Application::loop()
 {
+	int a = 0;
 	bool keepWindowOpen = true;
 	while (keepWindowOpen)
 	{
+		std::cout << a << std::endl;
+		a++;
 		while (SDL_PollEvent(&m_windowEvent) > 0) 
 		{
 			m_spaceship.handleEvents(m_windowEvent);

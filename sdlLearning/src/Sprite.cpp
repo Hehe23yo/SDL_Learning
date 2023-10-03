@@ -1,9 +1,13 @@
 #include "Sprite.h"
 
+int const SPRITESHEET_UP = 0;
+int const SPRITESHEET_DOWN = 0;
+int const SPRITESHEET_LEFT = 1;
+int const SPRITESHEET_RIGHT = 1;
 
 Sprite::Sprite()
 {
-	m_image = loadSprite("../SampleImages/BMP/fighter_plane1.bmp");
+	
 
 	m_imagePos.x = 0;
 	m_imagePos.y = 0;
@@ -12,25 +16,16 @@ Sprite::Sprite()
 
 	m_imageX = 0.0;
 	m_imageY = 0.0;
+
+	//m_spritesheetColumn = 1;
 }
 
 Sprite::~Sprite()
 {
-	SDL_DestroySurface(m_image);
+
 }
 
-SDL_Surface* Sprite::loadSprite(char const* path)
-{
-	SDL_Surface* image = SDL_LoadBMP(path);
-	
-	if (!image)
-	{
-		std::cout << "Failed to load bitmap!" << std::endl;
-		std::cout << "SDL Error : " << SDL_GetError() << std::endl;
-	}
 
-	return image;
-}
 
 void Sprite::update(double deltaTime)
 {
@@ -39,29 +34,41 @@ void Sprite::update(double deltaTime)
 		case Direction::NONE:
 			m_imageX += 0.0;
 			m_imageY += 0.0;
+			m_sheet.selectSprite(0, 0);
 			break;
 		case Direction::UP:
 			m_imageY = m_imageY - (5 * deltaTime);
+			m_sheet.selectSprite(m_spritesheetColumn, SPRITESHEET_UP);
 			break;
 		case Direction::DOWN:
 			m_imageY = m_imageY + (5 * deltaTime);
+			m_sheet.selectSprite(m_spritesheetColumn + 4, SPRITESHEET_DOWN);
 			break;
 		case Direction::RIGHT:
 			m_imageX = m_imageX + (5 * deltaTime);
+			m_sheet.selectSprite(m_spritesheetColumn + 4, SPRITESHEET_RIGHT);
 			break;
 		case Direction::LEFT:
 			m_imageX = m_imageX - (5 * deltaTime);
+			m_sheet.selectSprite(m_spritesheetColumn, SPRITESHEET_LEFT);
 			break;
 	}
 
 	m_imagePos.x = m_imageX;
 	m_imagePos.y = m_imageY;
+
+	m_spritesheetColumn++;
+
+	if (m_spritesheetColumn > 4)
+	{
+		m_spritesheetColumn = 1;
+	}
 	
 }
 
 void Sprite::draw(SDL_Surface* windowSurface)
 {
-	SDL_BlitSurface(m_image, nullptr, windowSurface, &m_imagePos);
+	m_sheet.drawSelected(windowSurface, &m_imagePos);
 }
 
 void Sprite::handleEvents(SDL_Event const& event)
