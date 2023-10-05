@@ -73,6 +73,7 @@ void Sprite::draw(SDL_Surface* windowSurface)
 
 void Sprite::handleEvents(SDL_Event const& event)
 {
+	Uint8 const* key;
 	switch (event.type)
 	{
 	case SDL_EVENT_KEY_DOWN:
@@ -86,8 +87,8 @@ void Sprite::handleEvents(SDL_Event const& event)
 			m_direction = Direction::LEFT;
 		else if (key[SDL_SCANCODE_D] == 1)
 			m_direction = Direction::RIGHT;
-		else
-			m_direction = Direction::NONE;
+	case SDL_EVENT_KEY_UP:
+		m_direction = Direction::NONE;
 		break;
 	}
 }
