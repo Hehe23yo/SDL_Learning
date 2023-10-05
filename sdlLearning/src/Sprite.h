@@ -12,7 +12,6 @@ public:
 
 	void update(double deltaTime);
 	void draw(SDL_Surface* SDL_windowSurfac);
-	SDL_Surface* loadSprite(char const* path);
 	void handleEvents(SDL_Event const &event);
 
 	enum class Direction
