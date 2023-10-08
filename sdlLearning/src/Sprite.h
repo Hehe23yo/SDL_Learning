@@ -31,7 +31,7 @@ private:
 
 	Direction m_direction;
 
-	Spritesheets m_sheet = { "../sampleImages/BMP/Hero.bmp", 3, 8 };
+	Spritesheets m_sheet = { "../sampleImages/Other/Hero.png", 3, 8 };
 	int m_spritesheetColumn;
 };
 

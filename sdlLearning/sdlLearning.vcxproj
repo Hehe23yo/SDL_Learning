@@ -118,7 +118,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalOptions>SDL3.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>SDL3.lib SDL2_image.lib %(AdditionalOptions)</AdditionalOptions>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
@@ -264,6 +264,7 @@
     <ClInclude Include="vendor\SDL\include\SDL3\SDL_haptic.h" />
     <ClInclude Include="vendor\SDL\include\SDL3\SDL_hidapi.h" />
     <ClInclude Include="vendor\SDL\include\SDL3\SDL_hints.h" />
+    <ClInclude Include="vendor\SDL\include\SDL3\SDL_image.h" />
     <ClInclude Include="vendor\SDL\include\SDL3\SDL_init.h" />
     <ClInclude Include="vendor\SDL\include\SDL3\SDL_intrin.h" />
     <ClInclude Include="vendor\SDL\include\SDL3\SDL_joystick.h" />

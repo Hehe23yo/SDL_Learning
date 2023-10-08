@@ -35,7 +35,7 @@ void Application::loop()
 	{
 		std::cout << a << std::endl;
 		a++;
-		while (SDL_PollEvent(&m_windowEvent) > 0) 
+		while (SDL_PollEvent(&m_windowEvent) > 0)  // Gets all events in queue
 		{
 			m_spaceship.handleEvents(m_windowEvent);
 			switch (m_windowEvent.type)
@@ -62,5 +62,5 @@ void Application::draw()
 {
 	SDL_FillSurfaceRect(m_windowSurface, nullptr, SDL_MapRGB(m_windowSurface->format, 0, 0, 0));
 	m_spaceship.draw(m_windowSurface);
-	SDL_UpdateWindowSurface(m_window);
+	SDL_UpdateWindowSurface(m_window); // Update the window surface after each drawing
 }
