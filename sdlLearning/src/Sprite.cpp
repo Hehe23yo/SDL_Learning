@@ -26,7 +26,7 @@ Sprite::~Sprite()
 }
 
 
-
+// Update the character location on world
 void Sprite::update(double deltaTime)
 {
 	switch (m_direction)
@@ -34,7 +34,7 @@ void Sprite::update(double deltaTime)
 		case Direction::NONE:
 			m_imageX += 0.0;
 			m_imageY += 0.0;
-			m_sheet.selectSprite(0, 0);
+			m_sheet.selectSprite(5, 0);
 			break;
 		case Direction::UP:
 			m_imageY = m_imageY - (5 * deltaTime);
@@ -76,20 +76,21 @@ void Sprite::handleEvents(SDL_Event const& event)
 	Uint8 const* key;
 	switch (event.type)
 	{
-	case SDL_EVENT_KEY_DOWN:
-		Uint8 const* key = SDL_GetKeyboardState(nullptr); // returns an array of the states of all keys
+		case SDL_EVENT_KEY_DOWN:
+			key = SDL_GetKeyboardState(nullptr); // returns an array of the states of all keys
 
-		if (key[SDL_SCANCODE_W] == 1)
-			m_direction = Direction::UP;
-		else if (key[SDL_SCANCODE_S] == 1)
-			m_direction = Direction::DOWN;
-		else if (key[SDL_SCANCODE_A] == 1)
-			m_direction = Direction::LEFT;
-		else if (key[SDL_SCANCODE_D] == 1)
-			m_direction = Direction::RIGHT;
-	case SDL_EVENT_KEY_UP:
-		m_direction = Direction::NONE;
-		break;
+			if (key[SDL_SCANCODE_W] == 1)
+				m_direction = Direction::UP;
+			else if (key[SDL_SCANCODE_S] == 1)
+				m_direction = Direction::DOWN;
+			else if (key[SDL_SCANCODE_A] == 1)
+				m_direction = Direction::LEFT;
+			else if (key[SDL_SCANCODE_D] == 1)
+				m_direction = Direction::RIGHT;
+			break;
+		case SDL_EVENT_KEY_UP:
+			m_direction = Direction::NONE;
+			break;
 	}
 }
 

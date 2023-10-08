@@ -548,6 +548,9 @@
     <ClInclude Include="src\Spritesheets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\SDL\include\SDL3\SDL_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL\include\SDL_config.h.cmake" />
