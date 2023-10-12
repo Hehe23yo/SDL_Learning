@@ -12,7 +12,7 @@ int main()
 {
 	Application app;
 	
-	app.loop();
+	//app.loop();
 	//app.draw();
 
 }

@@ -21,6 +21,8 @@ private:
 	SDL_Window* m_window;
 	SDL_Surface* m_windowSurface;
 	SDL_Event m_windowEvent;
+
+	SDL_Renderer* m_windowRenderer;
 	
 };
 

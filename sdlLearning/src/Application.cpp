@@ -11,6 +11,50 @@ Application::Application()
 		std::cout << "SDL Error : " << SDL_GetError() << std::endl;
 	}
 
+	m_windowRenderer = SDL_CreateRenderer(m_window, NULL, SDL_RENDERER_ACCELERATED);
+
+	SDL_Surface* image = SDL_LoadBMP("../SampleImages/BMP/berries-leaves.bmp");
+	SDL_Texture* m_texture = SDL_CreateTextureFromSurface(m_windowRenderer, image);
+	if (!m_texture)
+	{
+		std::cout << "Failed to create texture!" << std::endl;
+		std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+	}
+
+	SDL_DestroySurface(image);
+
+	SDL_RenderClear(m_windowRenderer);
+	SDL_RenderTexture(m_windowRenderer, m_texture, NULL, NULL);
+	SDL_RenderPresent(m_windowRenderer);
+
+	//SDL_Delay(5000);
+
+	SDL_FRect rect;
+	rect.x = 400;
+	rect.y = 300;
+	rect.w = 80;
+	rect.h = 80;
+	
+	SDL_SetRenderDrawColor(m_windowRenderer, 255, 255, 255, 255);
+	SDL_RenderRect(m_windowRenderer, &rect);
+	SDL_SetRenderDrawColor(m_windowRenderer, 0, 0, 0, 255);
+	SDL_RenderPresent(m_windowRenderer);
+
+	//SDL_Delay(5000);
+
+	SDL_SetRenderDrawColor(m_windowRenderer, 255, 75, 0, 125);
+	SDL_RenderFillRect(m_windowRenderer, &rect);
+	SDL_RenderPresent(m_windowRenderer);
+
+	//SDL_Delay(5000);
+
+	SDL_SetRenderDrawColor(m_windowRenderer, 255, 254, 251, 255);
+	SDL_RenderLine(m_windowRenderer, 0, 0, 800, 600);
+	SDL_RenderPoint(m_windowRenderer, 700, 55);
+	SDL_RenderPresent(m_windowRenderer);
+
+	SDL_Delay(5000);
+
 	m_windowSurface = SDL_GetWindowSurface(m_window);
 	if (!m_windowSurface)
 	{
@@ -24,6 +68,7 @@ Application::~Application()
 {
 	SDL_DestroySurface(m_windowSurface);
 	SDL_DestroyWindow(m_window);
+	SDL_Quit(); // To deinitialize SDL
 }
 
 // The main Loop
